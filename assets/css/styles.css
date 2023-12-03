@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('../fonts/SFProDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'New York Medium';
+    src: url('../fonts/NewYorkMediumBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'New York';
+    src: url('../fonts/NewYork.ttf') format('truetype');
+}
+
+
+html, body {
+    margin: 0;   
+    padding: 0; 
+    background-color: #E6E6E6;
+    user-select: none;
+    color: #191919;
+}
+
+.avatar {
+    border-radius: 50%;
+    height: 52px;
+}
+
+/* layout */
+
+.container {
+    display: flex;
+    max-width: 320px;
+    margin: 30px auto;
+    flex-direction: column;
+}
+
+.greeting {
+    display: flex;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #FFF;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.motivational-words {
+    width: 50%;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    padding: 15px;
+    display: inline-block;
+}
+
+/* typography */
+
+h1 {
+    font-family: 'New York Medium', sans-serif;
+    font-size: 15px;
+    color: #191919;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.motivational-words p {
+    font-family: 'New York', sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    text-align: center;
+}
+
+p {
+    font-family: 'SF Pro Text', sans-serif;
+    font-size: 13px;
+}
+
+span {
+    font-family: 'New York Medium', sans-serif;
+    font-size: 22px;
+    display: block;
+}
+
+/* button */
+
+.add-activity {
+    border: none;
+    background-color: #FFF;
+}
