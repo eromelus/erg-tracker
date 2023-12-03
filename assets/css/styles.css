@@ -70,6 +70,11 @@ li {
     display: inline-block;
 }
 
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* typography */
 
 h1 {
@@ -87,6 +92,11 @@ h1 {
     text-align: center;
 }
 
+.stats p {
+    font-size: 15px;
+    margin: 0;
+}
+
 p {
     font-family: 'SF Pro Text', sans-serif;
     font-size: 13px;
@@ -96,6 +106,11 @@ span {
     font-family: 'New York Medium', sans-serif;
     font-size: 22px;
     display: block;
+}
+
+.small-text {
+    font-size: 10px;
+    font-weight: 200;
 }
 
 /* button */

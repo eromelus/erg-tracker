@@ -52,6 +52,7 @@ const database = getDatabase(app);
 const ergWorkoutListInDB = ref(database, "ergWorkoutList")
 
 const allTimeStatsEl = document.getElementById("all-time-stats")
+const recentActivityEl = document.getElementById("recent-activity")
 
 // ergWorkoutsArray.forEach(ergWorkout => {
 //     push(ergWorkoutListInDB, ergWorkout)
@@ -59,16 +60,51 @@ const allTimeStatsEl = document.getElementById("all-time-stats")
 
 
 onValue(ergWorkoutListInDB, function(snapshot) {
-    if (snapshot.exists()) {
-        const workouts = Object.entries(snapshot.val()).map(workout => workout[1])
-        const stats = calculateAllTimeStats(workouts)
-        
-        Object.entries(stats).forEach(stat => {
-            appendItemToAllTimeListEl(stat)
-        })
-    }
+  if (snapshot.exists()) {
+      const workouts = Object.entries(snapshot.val()).map(workout => workout[1])
+      const workoutsSortedByDate = sortWorkoutsByDate(workouts)
+      
+      const stats = calculateAllTimeStats(workouts)
+      Object.entries(stats).forEach(stat => {
+          appendItemToAllTimeListEl(stat)
+      })
+
+      for (let i = 0; i < 3; i++) {
+          appendItemToRecentActivityListEl(workoutsSortedByDate[i])
+      }
+
+      console.log(workouts)
+  }
 })
 
+function appendItemToRecentActivityListEl(item) {
+  const workoutDate = item.workoutDate
+  const workoutType = item.workoutType
+  const totalTime = item.totalTime
+  const totalDistanceMeters = item.totalDistanceMeters
+  const averagePace = item.averagePace
+  const averageSpm = item.averageSpm
+
+  const newEl = document.createElement("li")
+  newEl.innerHTML = `
+      <p class="small-text">${workoutDate}<br/> ${workoutType}<p>
+      <div class="stats">
+        <div><p>${totalDistanceMeters}<br/><span class="small-text">Total Meters</span><p></div>
+        <div><p>${averagePace}<br/><span class="small-text">Avg Pace</span><p></div>
+        <div><p>${averageSpm}<br/><span class="small-text">Avg SPM</span><p></div>
+        <div><p>${totalTime}<br/><span class="small-text">Total Time</span><p></div>
+      </div>
+  `
+  recentActivityEl.append(newEl)
+}
+
+function sortWorkoutsByDate(workouts) {
+  return workouts.sort((a, b) => {
+      const aDate = new Date(a.workoutDate)
+      const bDate = new Date(b.workoutDate)
+      return bDate - aDate
+  })
+}
 
 function appendItemToAllTimeListEl(item) {
   const itemName = item[0]
